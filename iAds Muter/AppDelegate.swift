@@ -52,16 +52,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let userInfo = notification.userInfo {
             println(userInfo)
             
-            if let genre = userInfo["Genre"] as? String {
-                if genre == "Podcast" {
-                    unmute()
-                }
-            }
-            else if(userInfo["nomenR"]?.length > 0) {
+            if(userInfo["nomenR"]?.length > 0) {
                 unmute()
             }
             else {
-                mute()
+                if let genre = userInfo["Genre"] as? String {
+                    if genre == "Podcast" {
+                        unmute()
+                    }
+                    else {
+                        mute()
+                    }
+                }
+                else {
+                    mute()
+                }
             }
         }
         
