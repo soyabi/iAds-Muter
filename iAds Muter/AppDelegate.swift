@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func registerForItunesNotifications () {
-        if let enableItem = menu.itemWithTitle("Enable") {
+        if let _ = menu.itemWithTitle("Enable") {
             menu.removeItem(enableMenuItem)
         }
         
@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func unregisterForItunesNotifications () {
-        if let disableItem = menu.itemWithTitle("Disable") {
+        if let _ = menu.itemWithTitle("Disable") {
             menu.removeItem(disableMenuItem)
         }
         menu.insertItem(enableMenuItem, atIndex: 0)
@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func receivedNotification(notification: NSNotification){
         if let userInfo = notification.userInfo {
-            println(userInfo)
+            print(userInfo)
             
             if(userInfo["nomenR"]?.length > 0) {
                 unmute()
@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var errorDict : NSDictionary?
             script.executeAndReturnError(&errorDict)
             if let hasError = errorDict {
-                println("Error muting: \(hasError)")
+                print("Error muting: \(hasError)")
             }
         }
     }
@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var errorDict : NSDictionary?
             script.executeAndReturnError(&errorDict)
             if let hasError = errorDict {
-                println("Error unmuting: \(hasError)")
+                print("Error unmuting: \(hasError)")
             }
         }
         
